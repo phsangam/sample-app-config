@@ -1,0 +1,27 @@
+replicaCount: 2
+
+image:
+  repository: 569085067591.dkr.ecr.ap-south-1.amazonaws.com/uat-dotnet-api
+  tag: "latest"
+  pullPolicy: Always
+
+service:
+  type: ClusterIP   # internal only - not exposed to internet
+  port: 5000
+  targetPort: 5000
+
+env:
+  ASPNETCORE_ENVIRONMENT: "UAT"
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
+hpa:
+  minReplicas: 2
+  maxReplicas: 5
+  cpuUtilization: 70

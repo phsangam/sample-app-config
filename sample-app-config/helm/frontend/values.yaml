@@ -1,0 +1,28 @@
+replicaCount: 2
+
+image:
+  repository: 569085067591.dkr.ecr.ap-south-1.amazonaws.com/uat-frontend
+  tag: "latest"
+  pullPolicy: Always
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 80
+
+env:
+  REACT_APP_DOTNET_API_URL: "http://dotnet-api-service"
+  REACT_APP_JAVA_API_URL: "http://java-service"
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "250m"
+    memory: "256Mi"
+
+hpa:
+  minReplicas: 2
+  maxReplicas: 5
+  cpuUtilization: 70

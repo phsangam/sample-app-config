@@ -1,0 +1,27 @@
+replicaCount: 2
+
+image:
+  repository: 569085067591.dkr.ecr.ap-south-1.amazonaws.com/uat-java-service
+  tag: "latest"
+  pullPolicy: Always
+
+service:
+  type: ClusterIP   # internal only
+  port: 8080
+  targetPort: 8080
+
+env:
+  APP_ENV: "uat"
+
+resources:
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
+hpa:
+  minReplicas: 2
+  maxReplicas: 5
+  cpuUtilization: 70
