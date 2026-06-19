@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: 569085067591.dkr.ecr.ap-south-1.amazonaws.com/uat-frontend
-  tag: "latest"
+  tag: "b2ba9d36f96876b8f0a23cea1ace543d0082459e"
   pullPolicy: Always
 
 service:
